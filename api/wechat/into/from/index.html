@@ -1,0 +1,26 @@
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>抖音充值</title>
+</head>
+<body>
+<div style="text-align: center;font-size: 20px;color:#3e3e3e;">
+    登录中...
+</div>
+<script>
+    let currentUrl = window.location.href;
+    let domain = 'https://douyin.61week.com';
+    if (currentUrl.includes('redirect')) {
+        // 兼容第一版本跳转
+        let ccode = currentUrl.split('/').slice(-1)[0];
+        let encodeUrl = encodeURI(`${domain}?ccode=${ccode}`);
+        window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7b168b095eb4090e&redirect_uri=${encodeUrl}&response_type=code&scope=snsapi_base&state=wx7b168b095eb4090e#wechat_redirect`;
+    } else if (currentUrl.includes('into/from')) {
+        // 兼容第二版本跳转
+        let ccode = currentUrl.split('/').slice(-1)[0];
+        let encodeUrl = encodeURI(`${domain}?ccode=${ccode}`);
+        window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7b168b095eb4090e&redirect_uri=${encodeUrl}&response_type=code&scope=snsapi_base&state=wx7b168b095eb4090e#wechat_redirect`;
+    }
+</script>
+</body>
+</html>
